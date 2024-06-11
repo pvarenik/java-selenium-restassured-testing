@@ -6,7 +6,7 @@ This project contains automated UI and API tests using Selenium, RestAssured, an
 
 - Java Development Kit (JDK)
 - Maven
-- A web browser (Chrome, Firefox, Safari)
+- A web browser (Chrome, Firefox, Edge)
 
 ## Dependencies
 
