@@ -10,4 +10,6 @@ public class Constants {
     public static final String TODAY = "Today";
     public static final String TOMORROW = "Tomorrow";
     public static final String NEXT_WEEK = "Next Week";
+    public static final String DEFAULT_UI_URL = "https://www.xm.com";
+    public static final String DEFAULT_API_URI = "https://swapi.dev/api";
 }

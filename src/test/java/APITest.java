@@ -1,3 +1,4 @@
+import constants.Constants;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -10,7 +11,7 @@ public class APITest {
 
     @BeforeClass(groups = "API")
     public void setup() {
-        RestAssured.baseURI = System.getProperty("baseURI", "https://swapi.dev/api");
+        RestAssured.baseURI = System.getProperty("baseURI", Constants.DEFAULT_API_URI);
     }
 
     @Test(groups = "API")

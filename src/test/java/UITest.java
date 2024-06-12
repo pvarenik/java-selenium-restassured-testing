@@ -23,7 +23,7 @@ public class UITest {
 
     @BeforeClass(groups = "UI")
     public void setup() {
-        baseUrl = System.getProperty("baseUrl", "https://www.xm.com");
+        baseUrl = System.getProperty("baseUrl", Constants.DEFAULT_UI_URL);
     }
 
 
