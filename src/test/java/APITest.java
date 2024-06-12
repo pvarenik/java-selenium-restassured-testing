@@ -23,12 +23,13 @@ public class APITest {
 
         // Step 2: Find the tallest person in the latest film
         response = given().get(latestFilmUrl);
-        int maxHeight = 0;
+        int maxHeight = 0, height = 0;
         String tallestCharacterUrl = "";
         for(Object character: response.jsonPath().getList("characters")) {
             response = given().get(character.toString());
-            if(response.jsonPath().getInt("height") > maxHeight) {
-                maxHeight = response.jsonPath().getInt("height");
+            height = response.jsonPath().getInt("height");
+            if(height > maxHeight) {
+                maxHeight = height;
                 tallestCharacterUrl = character.toString();
             }
         }
@@ -43,8 +44,11 @@ public class APITest {
 
         // Verify the URLs are not null
         Assert.assertNotNull(latestFilmUrl);
+        System.out.println("Latest release: " + latestFilmUrl);
         Assert.assertNotNull(tallestCharacterUrl);
+        System.out.println("Tallest person in this film: " + tallestCharacterUrl);
         Assert.assertNotNull(tallestPersonUrl);
+        System.out.println("Tallest person in all films: " + tallestPersonUrl);
     }
 
     @Test(groups = "API")

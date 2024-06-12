@@ -28,7 +28,7 @@ public class UITest {
 
     /*
      * Height = 0 and width = 0 start browser maximized
-     * 1024x768 and 800x600 are commented, because it starts the  mobile view mode
+     * 1024x768 and 800x600 are commented, because it starts the mobile view mode
      *                      and there is no calendar in the mobile view.
      */
     @DataProvider(name = "browsers")
@@ -94,7 +94,7 @@ public class UITest {
         VideoPage videoPage = new VideoPage(driver);
         videoPage.playVideo();
         Assert.assertTrue(videoPage.isVideoPlaying());
-        Thread.sleep(5000); // paying video for 5 seconds
+        Thread.sleep(5000); // playing video for 5 seconds
         Assert.assertTrue(videoPage.isVideoPlaying());
     }
 
