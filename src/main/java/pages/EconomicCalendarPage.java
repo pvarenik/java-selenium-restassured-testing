@@ -50,13 +50,13 @@ public class EconomicCalendarPage {
         WebElement sliderElement = driver.findElement(slider);
         switch (period) {
             case Constants.TODAY:
-                moveSlider(sliderElement, 1);
+                moveSlider(sliderElement, Constants.TODAY_SLIDER_MOVES);
                 break;
             case Constants.TOMORROW:
-                moveSlider(sliderElement, 2);
+                moveSlider(sliderElement, Constants.TOMORROW_SLIDER_MOVES);
                 break;
             case Constants.NEXT_WEEK:
-                moveSlider(sliderElement, 4);
+                moveSlider(sliderElement, Constants.NEXT_WEEK_SLIDER_MOVES);
                 break;
         }
     }

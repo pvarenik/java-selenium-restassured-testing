@@ -21,6 +21,7 @@ public class VideoPage {
     public void playVideo() {
         switchToIframe();
         wait.until(ExpectedConditions.elementToBeClickable(videoPlayer));
+        wait.until(ExpectedConditions.attributeContains(videoPlayer, "class", "paused"));
         WebElement video = driver.findElement(videoPlayer);
         video.click();
         switchBackToTheDefaultContent();
