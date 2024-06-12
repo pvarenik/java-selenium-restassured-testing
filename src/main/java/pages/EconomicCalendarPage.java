@@ -1,6 +1,6 @@
 package pages;
 
-import dev.failsafe.internal.util.Assert;
+import constants.Constants;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import org.testng.Assert;
 
 public class EconomicCalendarPage {
     private final WebDriver driver;
@@ -47,13 +48,13 @@ public class EconomicCalendarPage {
         driver.findElement(sliderLabel).click();
         WebElement sliderElement = driver.findElement(slider);
         switch (period) {
-            case "Today":
+            case Constants.TODAY:
                 moveSlider(sliderElement, 1);
                 break;
-            case "Tomorrow":
+            case Constants.TOMORROW:
                 moveSlider(sliderElement, 2);
                 break;
-            case "Next Week":
+            case Constants.NEXT_WEEK:
                 moveSlider(sliderElement, 4);
                 break;
         }
@@ -66,37 +67,36 @@ public class EconomicCalendarPage {
         }
     }
 
-    public boolean isDateCorrect(@NotNull String expectedDate) {
+    public void isDateCorrect(@NotNull String expectedDate) {
         Calendar c = Calendar.getInstance();
-        boolean result = true;
         wait.until(ExpectedConditions.visibilityOfElementLocated(highlightedDate));
         switch (expectedDate) {
-            case "Today":
-                result = compareDates(c, driver.findElement(highlightedDate), 0);
+            case Constants.TODAY:
+                compareDates(c, driver.findElement(highlightedDate), 0);
                 break;
-            case "Tomorrow":
+            case Constants.TOMORROW:
                 c.setTime(new Date());
-                result = compareDates(c, driver.findElement(highlightedDate), 1);
+                compareDates(c, driver.findElement(highlightedDate), 1);
                 break;
-            case "Next Week":
+            case Constants.NEXT_WEEK:
                 c.setTime(new Date());
                 List<WebElement> dates = driver.findElements(highlightedDate);
-                Assert.isTrue(dates.size() == 2, "Time period was displayed incorrectly.");
+                Assert.assertEquals(dates.size(), 2, "Time period was displayed incorrectly.");
                 for(WebElement e: dates) {
-                    result = result && compareDates(c, e, 6);
+                   compareDates(c, e, Constants.NEXT_WEEK_DAYS);
                 }
                 break;
         }
-        return result;
     }
 
-    public boolean compareDates(@NotNull Calendar c, @NotNull WebElement e, int days) {
+    public void compareDates(@NotNull Calendar c, @NotNull WebElement e, int days) {
         c.add(Calendar.DATE, days);
         String dateActualText, dateActualAttribute, dateExpected, dateExpectedAttribute;
-        dateExpected = new SimpleDateFormat("dd").format(c.getTime());
-        dateExpectedAttribute = new SimpleDateFormat("EEE MMM dd yyyy").format(c.getTime());
+        dateExpected = new SimpleDateFormat(Constants.DATE_FORMAT_DAY).format(c.getTime());
+        dateExpectedAttribute = new SimpleDateFormat(Constants.DATE_FORMAT_FULL).format(c.getTime());
         dateActualText = e.getText();
         dateActualAttribute = e.getAttribute("aria-label");
-        return dateActualText.equals(dateExpected) && dateActualAttribute.equals(dateExpectedAttribute);
+        Assert.assertEquals(dateActualAttribute, dateExpectedAttribute, "Incorrect full date.");
+        Assert.assertEquals(dateActualText, dateExpected, "Incorrect date." );
     }
 }

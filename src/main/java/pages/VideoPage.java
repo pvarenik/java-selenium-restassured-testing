@@ -1,12 +1,11 @@
 package pages;
 
+import constants.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class VideoPage {
     private final WebDriver driver;
@@ -16,7 +15,7 @@ public class VideoPage {
 
     public VideoPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Constants.WAIT_DURATION);
     }
 
     public void playVideo() {

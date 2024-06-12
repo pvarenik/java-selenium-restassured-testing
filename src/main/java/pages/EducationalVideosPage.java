@@ -1,11 +1,10 @@
 package pages;
 
+import constants.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class EducationalVideosPage {
     private final WebDriver driver;
@@ -15,7 +14,7 @@ public class EducationalVideosPage {
 
     public EducationalVideosPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Constants.WAIT_DURATION);
     }
 
     public void clickIntroLesson() {

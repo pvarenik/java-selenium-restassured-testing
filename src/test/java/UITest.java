@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.*;
+import constants.*;
 
 public class UITest {
     private WebDriver driver;
@@ -75,14 +76,14 @@ public class UITest {
 
         calendarPage.switchToIframe();
 
-        calendarPage.selectDate("Today");
-        Assert.assertTrue(calendarPage.isDateCorrect("Today"));
+        calendarPage.selectDate(Constants.TODAY);
+        calendarPage.isDateCorrect(Constants.TODAY);
 
-        calendarPage.selectDate("Tomorrow");
-        Assert.assertTrue(calendarPage.isDateCorrect("Tomorrow"));
+        calendarPage.selectDate(Constants.TOMORROW);
+        calendarPage.isDateCorrect(Constants.TOMORROW);
 
-        calendarPage.selectDate("Next Week");
-        Assert.assertTrue(calendarPage.isDateCorrect("Next Week"));
+        calendarPage.selectDate(Constants.NEXT_WEEK);
+        calendarPage.isDateCorrect(Constants.NEXT_WEEK);
 
         calendarPage.switchBackToTheDefaultContent();
 
